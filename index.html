@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap 101 Template</title>
+
+    <!-- Bootstrap -->
+    <link href="output/main.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12">
+          <h3>Chartjs Test</h3>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 col-md-7">
+          <h3>Devices</h3>
+          <form id="rangeForm">
+            <label for="rangeInput">Minimum Device Count  :  </label><input id="rangeInput" name="rangeInput"  type="number" placeholder="Set Range" value="10"><button id="range" type="submit">Set Range</button></form>
+          <hr>
+          <canvas id="bars" width="1280" height="900"></canvas>
+        </div>
+        <div class="col-xs-12 col-md-5">
+          <canvas id="canvas"></canvas>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="bower_components/chartjs/Chart.min.js"></script>
+    <script src="devices.js"></script>
+    <script>
+    var options = {
+      responsive :true,
+      showTooltips: true,
+
+    };
+
+      var data = [
+    {
+        value: 18906,
+        color:"#406EAA",
+        highlight: "#33C8FF",
+        label : "Safari"
+
+    },
+
+    {
+        value: 4891,
+        color: "#4cb749",
+        highlight: "#5AD3D1",
+        label : "Chrome"
+    },
+
+    {
+        value: 3496,
+        color: "#e7e6dd",
+        highlight: "#DEDDD3",
+        label: "Android Browser"
+    },
+    {
+        value: 551,
+        color: "#e66000",
+        highlight: "#ff9500",
+        label: "Firefox"
+    },
+    {
+        value: 711,
+        color: "#00a1f1",
+        highlight: "#0cf0cf",
+        label: "Internet Explorer"
+    }
+    ]
+
+
+
+    </script>
+
+    <script>
+
+
+      var myPieChart = [];
+      var myBarChart = [];
+      var barChartLabels = [];
+      var barChartValues = [];
+      var barChartData = [];
+      var barChartOther = 0;
+
+      function SetDeviceData(range) {
+        devicesData.forEach(function(data){
+          if (data.nb_visits > range) {
+            barChartLabels.push(data.label);
+            barChartValues.push(data.nb_visits);
+
+          } else {
+            barChartOther += data.nb_visits
+          }
+
+        });
+        barChartLabels.push('Others');
+        barChartValues.push(barChartOther);
+        barChartData = {
+          labels: barChartLabels,
+          datasets: [
+              {
+                label: "Device",
+                fillColor: "#66757f",
+                strokeColor: "#292f33",
+                highlightFill: "#55acee",
+                highlightStroke: "#f5f8fa",
+                data : barChartValues
+              }
+          ]
+        }; //ENDE DATA
+      }
+
+      $(function(window){
+        var ctx = $("#canvas").get(0).getContext("2d");
+        var cty = $("#bars").get(0).getContext("2d");
+        myPieChart = new Chart(ctx).Pie(data,options);
+
+
+        SetDeviceData(10);
+        myBarChart = new Chart(cty).Bar(barChartData,options);
+
+        $('#rangeForm').on('submit', function(e){
+          e.preventDefault();
+
+          barChartLabels = [];
+          barChartValues = [];
+          barChartData = [];
+          barChartOther = 0;
+
+          SetDeviceData(e['target'][0]['value']);
+          myBarChart.destroy();
+
+          myBarChart = new Chart(cty).Bar(barChartData,options);
+        })
+
+
+        $('#canvas').on('click', function(e){
+            var event = myPieChart.getSegmentsAtEvent(e);
+            if( typeof(event[0]['label'])) {
+              console.log(event[0]['label'] + ' was clicked');
+            } else {
+              console.log('you missed the chart')
+            }
+        });
+
+      })
+    </script>
+  </body>
+</html>

@@ -1,0 +1,50 @@
+[
+    {
+    "label": "Desktop",
+    "nb_uniq_visitors": 325,
+    "nb_visits": 348,
+    "nb_actions": 666,
+    "nb_users": 0,
+    "max_actions": 33,
+    "sum_visit_length": 29511,
+    "bounce_count": 245,
+    "nb_visits_converted": 4,
+    "logo": "plugins/DevicesDetection/images/screens/normal.gif"
+    },
+    {
+    "label": "Smartphone",
+    "nb_uniq_visitors": 10,
+    "nb_visits": 10,
+    "nb_actions": 12,
+    "nb_users": 0,
+    "max_actions": 2,
+    "sum_visit_length": 133,
+    "bounce_count": 8,
+    "nb_visits_converted": 0,
+    "logo": "plugins/DevicesDetection/images/screens/smartphone.png"
+    },
+    {
+    "label": "Tablet",
+    "nb_uniq_visitors": 4,
+    "nb_visits": 4,
+    "nb_actions": 14,
+    "nb_users": 0,
+    "max_actions": 9,
+    "sum_visit_length": 2750,
+    "bounce_count": 2,
+    "nb_visits_converted": 0,
+    "logo": "plugins/DevicesDetection/images/screens/tablet.png"
+    },
+    {
+    "label": "unbekannt",
+    "nb_uniq_visitors": 2,
+    "nb_visits": 2,
+    "nb_actions": 2,
+    "nb_users": 0,
+    "max_actions": 1,
+    "sum_visit_length": 0,
+    "bounce_count": 2,
+    "nb_visits_converted": 0,
+    "logo": "plugins/DevicesDetection/images/screens/unknown.gif"
+}
+]

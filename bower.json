@@ -1,0 +1,27 @@
+{
+  "name": "bootstrap",
+  "version": "0.0.1",
+  "authors": [
+    "Johannes Wachendorf"
+  ],
+  "description": "simple bootstrap project",
+  "main": "index.php",
+  "keywords": [
+    "bootstrap",
+    "oygo"
+  ],
+  "license": "Copyright 2014 OYGO GmbH",
+  "homepage": "http://www.oygo.com",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.2.0",
+    "chartjs": "~0.2.0",
+    "animate.css": "~3.2.0"
+  }
+}
